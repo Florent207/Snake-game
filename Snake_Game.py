@@ -499,5 +499,6 @@ def on_key_down(key,mod,unicode):
         manageKeyboard(True)
 
 """======== FUNCTIONS TO START THE GAME ========"""
+os.environ['SDL_VIDEO_CENTERED'] = '1'
 sounds.hello.play()    
 pgzrun.go()
