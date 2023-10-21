@@ -352,6 +352,7 @@ expert = Actor('expert', (263, 420))
 use_wall = Actor('use_wall', (263, 175))
 no_use_wall = Actor('no_use_wall', (263, 350))
 
+
 # it's for initialize speed's parameter
 clock1=Clock(0.1) #0.05sec pulse --> this is to choose speed in function of mode
 clock2=Clock(5)#5sec seconds --> this is the time between incresease of speed
@@ -420,6 +421,8 @@ def draw():
         snake.draw(food.pos)    
         if snake.isFoodEaten():
             food.newPos(snake.posList)
+        
+
 
 """======== INIT GAME BY USER ========"""
 def on_mouse_down(pos):
@@ -427,41 +430,68 @@ def on_mouse_down(pos):
     global GUI_DONE
     global crossWall
     global clock1
-    
+    global mainbox
+    global easy
+    global medium
+    global hard
+    global expert
+    global use_wall
+    global no_use_wall
+ 
     # make buttons for choose level of difficulty
     if easy.collidepoint(pos):
         sounds.button.play()
         clock1=Clock(0.15)
         GUI_DONE= 1
+        easy = Actor('easy', (1000, 1000))
+        medium = Actor('medium', (1000, 1000))
+        hard = Actor('hard', (1000, 1000))
+        expert = Actor('expert', (1000, 1000))
     if medium.collidepoint(pos):
         sounds.button.play()
         clock1=Clock(0.12)
         for i in range(4):
             snake.addSegment()
         GUI_DONE= 1
+        easy = Actor('easy', (1000, 1000))
+        medium = Actor('medium', (1000, 1000))
+        hard = Actor('hard', (1000, 1000))
+        expert = Actor('expert', (1000, 1000))
     if hard.collidepoint(pos):
         sounds.button.play()
         clock1=Clock(0.08)
         for i in range(7):
             snake.addSegment()
         GUI_DONE= 1
+        easy = Actor('easy', (1000, 1000))
+        medium = Actor('medium', (1000, 1000))
+        hard = Actor('hard', (1000, 1000))
+        expert = Actor('expert', (1000, 1000))
     if expert.collidepoint(pos):
         sounds.button.play()
         clock1=Clock(0.05)
         for i in range(12):
             snake.addSegment()
         GUI_DONE= 1
-        
+        easy = Actor('easy', (1000, 1000))
+        medium = Actor('medium', (1000, 1000))
+        hard = Actor('hard', (1000, 1000))
+        expert = Actor('expert', (1000, 1000))
+
     # make buttons for choose to use wall or not
     if no_use_wall.collidepoint(pos):
         sounds.button.play()
         crossWall=False
         GUI_DONE= 2
+        use_wall = Actor('use_wall', (1000, 1000))
+        no_use_wall = Actor('no_use_wall', (1000, 1000))
     if use_wall.collidepoint(pos):
         sounds.button.play()
         crossWall=True
         GUI_DONE= 3
-        
+        use_wall = Actor('use_wall', (1000, 1000))
+        no_use_wall = Actor('no_use_wall', (1000, 1000))
+
 """======== INIT STEPMODE FOR DEBUG ========"""
 def on_key_down(key,mod,unicode):
     global step_mode
